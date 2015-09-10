@@ -1,0 +1,19 @@
+.wishlist_elem img {
+	max-height: 150px;
+	max-width: 150px;
+}
+
+.wishlist_elem a{
+	display: block;
+	height: 100%;
+	box-shadow: 0px 0px 15px #999;
+	text-align: center;
+	text-decoration: none;
+}
+
+
+.wishlist_elem{
+	width: 100%;
+	margin-top:15px;
+	cursor: pointer;
+}

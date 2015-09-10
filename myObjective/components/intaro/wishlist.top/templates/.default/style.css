@@ -1,0 +1,20 @@
+.wishlist_top_elem{
+	width: 31.333333%;
+	display: inline-block;
+	text-align: center;
+	position: relative;
+	top: 0;
+}
+
+.wishlist_top_elem span{
+	font-size: 15px;
+	word-break: break-all;
+	top: 0;
+	position: relative;
+	
+
+}
+
+.wishlist_pict{
+max-height: 200px;
+}
