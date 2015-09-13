@@ -9,7 +9,7 @@ for($i=0;$i<3;$i++)
 		<span>
 			<?=$arResult['WISHLIST_TOP'][$i]->Name?>
 		</span>
-		<img class="wishlist_pict" src="<?=$arResult['WISHLIST_TOP'][$i]->Img?>">
+		<img class="wishlist_pict" src="<?=CFile::GetPath($arResult['WISHLIST_TOP'][$i]->Img)?>">
 		</a>
 	</div>
 <?

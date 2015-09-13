@@ -2630,7 +2630,7 @@ window.JCCatalogElement.prototype.Add2Wishlist = function()
 	var pathstr = "/bitrix/templates/wishlist/components/bitrix/catalog/mytemp/bitrix/catalog.element/.default/";
 	BX.ajax({
 		type: "GET",
-		url: pathstr + "ajax.php" + "?item=" + this.visual.ID.slice(t)+"&name="+ document.getElementsByClassName("bx-title")[0].innerHTML +"&urli=" + window.location.pathname +"&img=" + document.getElementById(this.visual.ID + "_pict").src.slice(21),
+		url: pathstr + "ajax.php" + "?item=" + this.visual.ID.slice(t),
 		onsuccess: function(data){console.log(data)},
 		onfailure: function(){console.log("неудача")}
 	});
