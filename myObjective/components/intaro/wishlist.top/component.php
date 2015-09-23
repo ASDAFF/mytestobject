@@ -8,11 +8,14 @@ if(this->StartResutCache()) {
         order by quanity desc
         limit 3
     ");
-    while($row = $qs->Fetch()) {
+	
+    while($row = $q->Fetch()) {
         $idList[] = $row['itemID'];
     }
+	$arFilter = Array("ID"=>$idList);
     $arSelect = Array("ID", "IBLOCK_ID", "NAME", "DETAIL_PAGE_URL", "DETAIL_PICTURE");
-    $list = CIBlockElement::GetList(Array(), Array("ID"=>$idList), false, false, $arSelect);
+    $list = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
+	
     while($el = $list->GetNextElement()) {
         $fields = $el->GetFields();
         $res[] = array('NAME'=>$fields['NAME'], 'URL'=>$fields['DETAIL_PAGE_URL'], 'IMG'=>CFile::GetPath($fields['DETAIL_PICTURE']));
@@ -21,4 +24,3 @@ if(this->StartResutCache()) {
 	
 }
 $this->IncludeComponentTemplate();
-?>

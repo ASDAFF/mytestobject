@@ -36,6 +36,7 @@ if (CModule::IncludeModule("iblock")) {
 	$arFilter = Array("ID"=>$idList);
     $arSelect = Array("ID", "IBLOCK_ID", "NAME", "DETAIL_PAGE_URL", "DETAIL_PICTURE");
     $list = CIBlockElement::GetList(Array(), $arFilter, false, false, $arSelect);
+	
     while ($el = $list->GetNextElement()) {
         $fields = $el->GetFields();
         $res[] = array('NAME'=>$fields['NAME'], 'URL'=>$fields['DETAIL_PAGE_URL'], 'IMG'=>CFile::GetPath($fields['DETAIL_PICTURE']));
@@ -46,4 +47,4 @@ $arResult['NAV_STRING'] = $navResult;
 $arResult['WISHLIST'] = $res;
 
 $this->IncludeComponentTemplate();
-?>
+s
