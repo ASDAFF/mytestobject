@@ -2628,12 +2628,12 @@ window.JCCatalogElement.prototype.Add2Wishlist = function()
 {
 	var t= this.visual.ID.lastIndexOf("_") + 1;
 	var pathstr = "/bitrix/templates/wishlist/components/bitrix/catalog/mytemp/bitrix/catalog.element/.default/";
-	BX.ajax({
-		type: "GET",
-		url: pathstr + "ajax.php" + "?item=" + this.visual.ID.slice(t),
-		onsuccess: function(data){console.log(data)},
-		onfailure: function(){console.log("неудача")}
-	});
+	
+	BX.ajax.post(
+	    pathstr + "ajax.php",
+		"item=" + this.visual.ID.slice(t),
+		function(data){console.log(data)}
+	);
 };
 
 window.JCCatalogElement.prototype.BuyBasket = function()
