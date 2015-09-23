@@ -7,7 +7,7 @@ if ($USER->IsAuthorized()) {
                 FROM my_wihslist
                 WHERE userID=".$DB->ForSql($USER->GetID())." AND itemID=".$DB->ForSql($_POST['item'])."
 		    ");
-            //если результат запроса пуст - значит либо кортеж не был добавлен в предыдущей итерации, либо его не существовало вообще
+			//if query result is empty - it means line wasn't added at previous iteration or that line not existed
             if ($check->Fetch()) {
 		        break;
 		    } else {

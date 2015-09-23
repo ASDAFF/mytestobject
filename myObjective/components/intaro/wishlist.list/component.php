@@ -31,7 +31,7 @@ if (CModule::IncludeModule("iblock")) {
     ");
 					 
 	while ($row = $q->Fetch()) {
-        $idList[] =s $row['itemID'];
+        $idList[] = $row['itemID'];
 	}
 	$arFilter = Array("ID"=>$idList);
     $arSelect = Array("ID", "IBLOCK_ID", "NAME", "DETAIL_PAGE_URL", "DETAIL_PICTURE");
@@ -42,9 +42,8 @@ if (CModule::IncludeModule("iblock")) {
         $res[] = array('NAME'=>$fields['NAME'], 'URL'=>$fields['DETAIL_PAGE_URL'], 'IMG'=>CFile::GetPath($fields['DETAIL_PICTURE']));
 	}
 }
-s
+
 $arResult['NAV_STRING'] = $navResult;
 $arResult['WISHLIST'] = $res;
 
 $this->IncludeComponentTemplate();
-s
