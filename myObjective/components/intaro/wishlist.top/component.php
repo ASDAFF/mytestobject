@@ -1,12 +1,7 @@
 <? if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
-$obCache = new CPHPCache;
-$life_time = 3600000;
-$cache_id = "wishlist_top_cache";
-if($obCache->InitCache($life_time, $cache_id, "/cache_dir")) {
-	$arCache = $obCache->GetVars();
-	$arResult = $arCache["arResult"];
-} else {
+
+
+if(this->StartResutCache()) {
 		$STH = $DB->query("
 							select itemID, count(itemID) as quanity
 							from my_wishlist
@@ -15,24 +10,21 @@ if($obCache->InitCache($life_time, $cache_id, "/cache_dir")) {
 							limit 3
 						  ");
 		$i=0;
-		while($row = $STH->Fetch())
+		while($row = $STH->Fetch()) {
+			$idList[$i++] = $row['itemID'];
+		}
+		$i=0;
+		$arSelect = Array("ID", "IBLOCK_ID", "NAME", "DETAIL_PAGE_URL", "DETAIL_PICTURE");
+		$list = CIBlockElement::GetList(Array(), Array("ID"=>$idList), false, false, $arSelect);
+		while($el = $list->GetNextElement())
 		{
-			$el = CIBlockElement::GetByID($row['itemID']);
-			if($ar_res = $el->GetNext())
-			{
-				$res[$i]->Name = $ar_res['NAME']; 
-				$res[$i]->URL = $ar_res['DETAIL_PAGE_URL'];
-				$res[$i++]->Img = $ar_res['DETAIL_PICTURE'];
-			}
+			$fields = $el->GetFields();
+			$res[$i]->Name = $fields['NAME']; 
+			$res[$i]->URL = $fields['DETAIL_PAGE_URL'];
+			$res[$i++]->Img = $fields['DETAIL_PICTURE'];
 		}
 	$arResult['WISHLIST_TOP'] = $res;
 	
-}
-
-if($obCache->StartDataCache()) {
-$obCache->EndDataCache(array(
-"arResult" => $arResult
-));
 }
 
 $this->IncludeComponentTemplate();
